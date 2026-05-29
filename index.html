@@ -40,7 +40,6 @@ body{
   pointer-events:none;
   animation: fall linear forwards;
   color:#fff3e6;
-  text-shadow:0 0 5px rgba(0,0,0,0.1);
 }
 
 @keyframes fall{
@@ -132,7 +131,6 @@ h1{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  position:relative;
 }
 
 .num{
@@ -155,6 +153,27 @@ h1{
   font-size:1.4rem;
   font-family:'Caveat', cursive;
 }
+
+.petal{
+  position:absolute;
+  top:-10vh;
+  font-size:18px;
+  opacity:0.6;
+  pointer-events:none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall{
+  0%{ transform:translateY(-10vh) translateX(0) rotate(0deg); }
+  100%{ transform:translateY(110vh) translateX(40px) rotate(360deg); }
+}
+
+@media(max-width:700px){
+  h1{ font-size:3rem; }
+  .box{ width:110px; height:110px; }
+  .num{ font-size:2.3rem; }
+  .paper{ padding:50px 25px; }
+}
 </style>
 </head>
 
@@ -174,15 +193,14 @@ h1{
   </div>
 
   <div class="footer">
-    love you ♡
+    distance means so little when someone means so much ♡
   </div>
 
 </div>
 
 <script>
-const startDate = new Date("August 30, 2026 20:00:00");
-const reunionDate = new Date(startDate);
-reunionDate.setMonth(reunionDate.getMonth() + 3);
+
+const reunionDate = new Date("August 30, 2026 20:00:00");
 
 function updateCountdown(){
   const now = new Date().getTime();
@@ -225,12 +243,11 @@ function createPetal(){
 
   document.body.appendChild(petal);
 
-  setTimeout(() => {
-    petal.remove();
-  }, 12000);
+  setTimeout(() => petal.remove(), 12000);
 }
 
 setInterval(createPetal, 300);
+
 </script>
 
 </body>
