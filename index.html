@@ -1,379 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Until We Meet Again</title>
-
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    body{
-      min-height:100vh;
-      background:
-      linear-gradient(rgba(120,85,50,0.15),
-      rgba(120,85,50,0.15)),
-      #c8ab88;
-
-      font-family:'Cormorant Garamond', serif;
-
-      overflow:hidden;
-
-      display:flex;
-      justify-content:center;
-      align-items:center;
-
-      position:relative;
-    }
-
-    /* paper texture overlay */
-
-    body::before{
-      content:"";
-      position:absolute;
-      inset:0;
-
-      background-image:
-      radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
-
-      background-size:4px 4px;
-
-      opacity:0.4;
-      pointer-events:none;
-    }
-
-    /* main paper */
-
-    .paper{
-      position:relative;
-
-      width:90%;
-      max-width:850px;
-
-      background:#efe3cf;
-
-      padding:70px 50px;
-
-      box-shadow:
-      0 15px 40px rgba(0,0,0,0.25);
-
-      transform:rotate(-1deg);
-
-      border-radius:2px;
-    }
-
-    /* ripped effect */
-
-    .paper::before,
-    .paper::after{
-      content:"";
-      position:absolute;
-      left:0;
-      width:100%;
-      height:20px;
-      background:
-      repeating-linear-gradient(
-      -45deg,
-      #e8d7be,
-      #e8d7be 8px,
-      #efe3cf 8px,
-      #efe3cf 16px
-      );
-    }
-
-    .paper::before{
-      top:-12px;
-    }
-
-    .paper::after{
-      bottom:-12px;
-    }
-
-    h1{
-      text-align:center;
-      font-size:4rem;
-      color:#5c3b22;
-      font-weight:600;
-
-      line-height:0.9;
-    }
-
-    .small{
-      text-align:center;
-      font-family:'Caveat', cursive;
-      color:#7b5b40;
-      font-size:2rem;
-      margin-bottom:10px;
-    }
-
-    .line{
-      width:180px;
-      height:1px;
-      background:#7b5b40;
-      margin:25px auto;
-      opacity:0.5;
-    }
-
-    #countdown{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-
-      margin-top:40px;
-    }
-
-    .box{
-      width:130px;
-      height:130px;
-
-      background:#e7d3b7;
-
-      border:1px solid rgba(92,59,34,0.2);
-
-      box-shadow:
-      5px 5px 15px rgba(0,0,0,0.08);
-
-      transform:rotate(calc(-2deg + 4deg * var(--r)));
-
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-
-      position:relative;
-    }
-
-    .box::before{
-      content:"";
-      position:absolute;
-      top:-10px;
-      width:55px;
-      height:20px;
-
-      background:rgba(255,240,210,0.5);
-
-      transform:rotate(-4deg);
-
-      backdrop-filter:blur(1px);
-    }
-
-    .num{
-      font-size:3rem;
-      color:#5c3b22;
-      font-weight:600;
-    }
-
-    .label{
-      font-size:1rem;
-      letter-spacing:2px;
-      text-transform:lowercase;
-      color:#7b5b40;
-    }
-
-    .footer{
-      margin-top:50px;
-
-      text-align:center;
-
-      color:#6f5138;
-
-      font-size:1.4rem;
-
-      font-family:'Caveat', cursive;
-    }
-
-    /* polaroids */
-
-    .photo{
-      position:absolute;
-
-      width:130px;
-      height:160px;
-
-      background:white;
-
-      padding:10px 10px 30px 10px;
-
-      box-shadow:
-      0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    .photo div{
-      width:100%;
-      height:100%;
-
-      background:
-      linear-gradient(135deg,#d9b38c,#a87a52);
-    }
-
-    .photo1{
-      top:-40px;
-      left:-50px;
-      transform:rotate(-8deg);
-    }
-
-    .photo2{
-      bottom:-40px;
-      right:-40px;
-      transform:rotate(7deg);
-    }
-
-    /* flowers */
-
-    .flower{
-      position:absolute;
-      font-size:2rem;
-      opacity:0.5;
-    }
-
-    .f1{
-      top:60px;
-      right:80px;
-    }
-
-    .f2{
-      bottom:70px;
-      left:90px;
-    }
-
-    @media(max-width:700px){
-
-      h1{
-        font-size:3rem;
-      }
-
-      .box{
-        width:110px;
-        height:110px;
-      }
-
-      .num{
-        font-size:2.3rem;
-      }
-
-      .photo{
-        display:none;
-      }
-
-      .paper{
-        padding:50px 25px;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Until We Meet Again</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  background:
+  linear-gradient(rgba(120,85,50,0.15), rgba(120,85,50,0.15)),
+  #c8ab88;
+
+  font-family:'Cormorant Garamond', serif;
+  overflow:hidden;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  position:relative;
+}
+
+/* 🌸 PETALS LAYER */
+.petal{
+  position:absolute;
+  top:-10vh;
+  font-size:18px;
+  opacity:0.6;
+  pointer-events:none;
+  animation: fall linear forwards;
+  color:#fff3e6;
+  text-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+@keyframes fall{
+  0%{
+    transform:translateY(-10vh) translateX(0) rotate(0deg);
+  }
+  100%{
+    transform:translateY(110vh) translateX(40px) rotate(360deg);
+  }
+}
+
+/* paper texture */
+body::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size:4px 4px;
+  opacity:0.4;
+  pointer-events:none;
+}
+
+.paper{
+  position:relative;
+  width:90%;
+  max-width:850px;
+  background:#efe3cf;
+  padding:70px 50px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+  transform:rotate(-1deg);
+  border-radius:2px;
+  z-index:2;
+}
+
+/* ripped edges */
+.paper::before,
+.paper::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:20px;
+  background:repeating-linear-gradient(
+    -45deg,
+    #e8d7be,
+    #e8d7be 8px,
+    #efe3cf 8px,
+    #efe3cf 16px
+  );
+}
+
+.paper::before{ top:-12px; }
+.paper::after{ bottom:-12px; }
+
+h1{
+  text-align:center;
+  font-size:4rem;
+  color:#5c3b22;
+}
+
+.small{
+  text-align:center;
+  font-family:'Caveat', cursive;
+  color:#7b5b40;
+  font-size:2rem;
+}
+
+.line{
+  width:180px;
+  height:1px;
+  background:#7b5b40;
+  margin:25px auto;
+  opacity:0.5;
+}
+
+#countdown{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+
+.box{
+  width:130px;
+  height:130px;
+  background:#e7d3b7;
+  border:1px solid rgba(92,59,34,0.2);
+  box-shadow:5px 5px 15px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+.num{
+  font-size:3rem;
+  color:#5c3b22;
+  font-weight:600;
+}
+
+.label{
+  font-size:1rem;
+  letter-spacing:2px;
+  text-transform:lowercase;
+  color:#7b5b40;
+}
+
+.footer{
+  margin-top:50px;
+  text-align:center;
+  color:#6f5138;
+  font-size:1.4rem;
+  font-family:'Caveat', cursive;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="paper">
+<div class="paper">
 
-    <div class="photo photo1">
-      <div></div>
-    </div>
+  <div class="small">counting down until</div>
+  <h1>we meet again</h1>
+  <div class="line"></div>
 
-    <div class="photo photo2">
-      <div></div>
-    </div>
-
-    <div class="flower f1">❀</div>
-    <div class="flower f2">❀</div>
-
-    <div class="small">
-      counting down until
-    </div>
-
-    <h1>
-      we meet again
-    </h1>
-
-    <div class="line"></div>
-
-    <div id="countdown">
-
-      <div class="box" style="--r:0.1">
-        <div class="num" id="days">0</div>
-        <div class="label">days</div>
-      </div>
-
-      <div class="box" style="--r:0.4">
-        <div class="num" id="hours">0</div>
-        <div class="label">hours</div>
-      </div>
-
-      <div class="box" style="--r:0.7">
-        <div class="num" id="minutes">0</div>
-        <div class="label">minutes</div>
-      </div>
-
-      <div class="box" style="--r:1">
-        <div class="num" id="seconds">0</div>
-        <div class="label">seconds</div>
-      </div>
-
-    </div>
-
-    <div class="footer">
-      distance means so little when someone means so much ♡
-    </div>
-
+  <div id="countdown">
+    <div class="box"><div class="num" id="days">0</div><div class="label">days</div></div>
+    <div class="box"><div class="num" id="hours">0</div><div class="label">hours</div></div>
+    <div class="box"><div class="num" id="minutes">0</div><div class="label">minutes</div></div>
+    <div class="box"><div class="num" id="seconds">0</div><div class="label">seconds</div></div>
   </div>
 
-  <script>
+  <div class="footer">
+    distance means so little when someone means so much ♡
+  </div>
 
-    // START: May 29 2026 8 PM
-    const startDate = new Date("May 29, 2026 20:00:00");
+</div>
 
-    // 3 months later
-    const reunionDate = new Date(startDate);
-    reunionDate.setMonth(reunionDate.getMonth() + 3);
+<script>
+const startDate = new Date("August 30, 2026 20:00:00");
+const reunionDate = new Date(startDate);
+reunionDate.setMonth(reunionDate.getMonth() + 3);
 
-    function updateCountdown(){
+function updateCountdown(){
+  const now = new Date().getTime();
+  const distance = reunionDate - now;
 
-      const now = new Date().getTime();
-      const distance = reunionDate - now;
+  if(distance <= 0){
+    document.getElementById("countdown").innerHTML =
+    "<h2 style='color:#5c3b22;'>together again ♡</h2>";
+    return;
+  }
 
-      if(distance <= 0){
+  document.getElementById("days").innerText =
+    Math.floor(distance / (1000*60*60*24));
 
-        document.getElementById("countdown").innerHTML =
-        "<h2 style='color:#5c3b22;'>together again ♡</h2>";
+  document.getElementById("hours").innerText =
+    Math.floor((distance / (1000*60*60)) % 24);
 
-        return;
-      }
+  document.getElementById("minutes").innerText =
+    Math.floor((distance / (1000*60)) % 60);
 
-      const days =
-      Math.floor(distance / (1000 * 60 * 60 * 24));
+  document.getElementById("seconds").innerText =
+    Math.floor((distance / 1000) % 60);
+}
 
-      const hours =
-      Math.floor((distance / (1000 * 60 * 60)) % 24);
+setInterval(updateCountdown,1000);
+updateCountdown();
 
-      const minutes =
-      Math.floor((distance / (1000 * 60)) % 60);
+/* 🌸 PETAL GENERATOR */
+const petals = ["❀","✿","❁","❦"];
 
-      const seconds =
-      Math.floor((distance / 1000) % 60);
+function createPetal(){
+  const petal = document.createElement("div");
+  petal.classList.add("petal");
 
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
-    }
+  petal.innerText = petals[Math.floor(Math.random()*petals.length)];
 
-    setInterval(updateCountdown,1000);
-    updateCountdown();
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.fontSize = (12 + Math.random()*18) + "px";
+  petal.style.animationDuration = (5 + Math.random()*6) + "s";
+  petal.style.opacity = (0.3 + Math.random()*0.5);
 
-  </script>
+  document.body.appendChild(petal);
+
+  setTimeout(() => {
+    petal.remove();
+  }, 12000);
+}
+
+setInterval(createPetal, 300);
+</script>
 
 </body>
 </html>
